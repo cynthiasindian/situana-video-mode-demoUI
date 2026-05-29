@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>H&S Video Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Health & Safety Video Generator</h1>
+            <p class="subtitle">Generate training videos with consistent characters</p>
+        </header>
+
+        <form id="videoForm">
+            <!-- Scenario Description -->
+            <div class="form-group">
+                <label for="scenario">Scenario Description</label>
+                <textarea
+                    id="scenario"
+                    name="scenario"
+                    placeholder="Describe the H&S scenario... e.g., Worker demonstrating proper lifting technique in a warehouse"
+                    required
+                ></textarea>
+            </div>
+
+            <!-- Character Selection -->
+            <div class="form-group">
+                <label for="character">Select Character</label>
+                <div class="character-select-wrapper">
+                    <select id="character" name="character" required>
+                        <option value="">-- Select a character --</option>
+                        <option value="Alex">Alex</option>
+                        <option value="Maria">Maria</option>
+                        <option value="James">James</option>
+                        <option value="Priya">Priya</option>
+                        <option value="Marcus">Marcus</option>
+                        <option value="Emma">Emma</option>
+                    </select>
+                    <div class="character-preview" id="characterPreview">
+                        <img id="characterImage" src="" alt="Character preview">
+                        <span class="placeholder-text">Select a character to preview</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Image Source -->
+            <div class="form-group">
+                <label for="imageSource">Image Source</label>
+                <select id="imageSource" name="imageSource" required>
+                    <option value="Generate with AI">Generate with AI</option>
+                    <option value="Upload Images">Upload Images</option>
+                </select>
+            </div>
+
+            <!-- File Upload (hidden by default) -->
+            <div class="form-group upload-section" id="uploadSection" style="display: none;">
+                <label for="uploadImage">Upload Scene Image</label>
+                <div class="upload-area" id="uploadArea">
+                    <input type="file" id="uploadImage" name="uploadImage" accept=".jpg,.jpeg,.png,.webp">
+                    <div class="upload-placeholder">
+                        <span class="upload-icon">+</span>
+                        <span>Click or drag image here</span>
+                    </div>
+                    <img id="uploadPreview" src="" alt="Upload preview" style="display: none;">
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" id="submitBtn" class="submit-btn">
+                <span class="btn-text">Generate Video</span>
+                <span class="btn-loading" style="display: none;">
+                    <span class="spinner"></span>
+                    Processing...
+                </span>
+            </button>
+        </form>
+
+        <!-- Loading Overlay -->
+        <div class="loading-overlay" id="loadingOverlay" style="display: none;">
+            <div class="loading-content">
+                <div class="loading-spinner"></div>
+                <h2>Generating Your Video</h2>
+                <p id="loadingStatus">Initializing...</p>
+                <div class="loading-steps">
+                    <div class="step" id="step1">
+                        <span class="step-icon">1</span>
+                        <span>Processing request</span>
+                    </div>
+                    <div class="step" id="step2">
+                        <span class="step-icon">2</span>
+                        <span>Generating image with character</span>
+                    </div>
+                    <div class="step" id="step3">
+                        <span class="step-icon">3</span>
+                        <span>Creating video</span>
+                    </div>
+                    <div class="step" id="step4">
+                        <span class="step-icon">4</span>
+                        <span>Uploading to Drive</span>
+                    </div>
+                </div>
+                <p class="loading-note">This may take 2-3 minutes. Please wait...</p>
+            </div>
+        </div>
+
+        <!-- Result Section -->
+        <div class="result-section" id="resultSection" style="display: none;">
+            <h2>Your Video is Ready!</h2>
+            <div class="video-container">
+                <video id="resultVideo" controls>
+                    <source src="" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="result-actions">
+                <a id="driveLink" href="#" target="_blank" class="btn btn-primary">Open in Google Drive</a>
+                <button id="newVideoBtn" class="btn btn-secondary">Generate Another Video</button>
+            </div>
+        </div>
+
+        <!-- Error Section -->
+        <div class="error-section" id="errorSection" style="display: none;">
+            <h2>Error</h2>
+            <p id="errorMessage"></p>
+            <button id="retryBtn" class="btn btn-secondary">Try Again</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
