@@ -1,5 +1,7 @@
 // Configuration - UPDATE THIS after deploying the workflow
-const WEBHOOK_URL = 'https://brd.app.n8n.cloud/webhook/hs-video-generator';
+const N8N_WEBHOOK_URL = 'https://brd.app.n8n.cloud/webhook/hs-video-generator';
+// Use CORS proxy to bypass browser CORS restrictions
+const WEBHOOK_URL = 'https://corsproxy.io/?' + encodeURIComponent(N8N_WEBHOOK_URL);
 
 // Character images (local files)
 const CHARACTER_IMAGES = {
